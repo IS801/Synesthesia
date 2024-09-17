@@ -14,6 +14,11 @@
 class Game{
     int window_height;
     int window_width;
+    sf::RenderWindow window;
+    
+    template <typename T>
+    void drawToWindow(sf::RenderWindow& window, T& elemToDraw);
+    void drawWindowPartition(sf::RenderWindow& window);
     
 public:
     Game(int wHeight = 800, int wWidth = 600);
