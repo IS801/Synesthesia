@@ -245,6 +245,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = /opt/homebrew/include;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-L/opt/homebrew/lib",
+					"-lsfml-graphics",
+					"-lsfml-system",
+					"-lsfml-window",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
