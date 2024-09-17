@@ -20,12 +20,21 @@ void Game::drawToWindow(sf::RenderWindow& window, T& elemToDraw){
     window.display();
 }
 
-void Game::drawWindowPartition(sf::RenderWindow& window){
-    sf::RectangleShape rectangle;
-    rectangle.setPosition(0, partition_boundary);
-    rectangle.setSize(sf::Vector2f(window_width, 5.f));
-    rectangle.setFillColor(sf::Color::White);
-    drawToWindow(window, rectangle);
+void Game::drawRectangle(sf::RenderWindow& window, Rectangle rectangle){
+    sf::RectangleShape shape;
+    shape.setPosition(rectangle.xPos, rectangle.yPos);
+    shape.setSize(sf::Vector2f(rectangle.width, rectangle.height));
+    shape.setFillColor(rectangle.color);
+    drawToWindow(window, shape);
+}
+
+void Game::createKeys(){
+    // TODO: START HERE
+    int startingPos;
+    int endPos;
+    int keyHight;
+    int keyWidth;
+    
 }
 
 // TODO:
@@ -33,8 +42,9 @@ void Game::drawWindowPartition(sf::RenderWindow& window){
 void Game::run(){
     sf::RenderWindow window (sf::VideoMode(window_width, window_height), "Synesthesia", sf::Style::Default);
     
-    partition_boundary = window_height * 0.75;
-    drawWindowPartition(window);
+    int partition_boundary = window_height * 0.75;
+    auto partition = Rectangle{0, partition_boundary, window_width, 5, sf::Color::White};
+    drawRectangle(window, partition);
     
     while(window.isOpen()){
         sf::Event event;
