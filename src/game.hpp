@@ -12,6 +12,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
+# TODO: Check that all this information can be pulled from the Drawable object and remove structm
 struct Rectangle{
     int xPos;
     int yPos;

@@ -20,6 +20,7 @@ void Game::drawToWindow(sf::RenderWindow& window, T& elemToDraw){
     window.display();
 }
 
+# TODO: Change this function to draw shape with sf::Drawable?
 void Game::drawRectangle(sf::RenderWindow& window, Rectangle rectangle){
     sf::RectangleShape shape;
     shape.setPosition(rectangle.xPos, rectangle.yPos);
