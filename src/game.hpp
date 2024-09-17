@@ -12,11 +12,12 @@
 #include <SFML/Graphics.hpp>
 
 class Game{
-    sf::Window window;
+    int window_height;
+    int window_width;
     
 public:
-    Game::Game(int wHeight = 800, wWidth = 600);
+    Game(int wHeight = 800, int wWidth = 600);
     void run();
-}
+};
 
 #endif /* game_hpp */
