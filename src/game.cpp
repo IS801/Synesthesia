@@ -22,10 +22,7 @@ void Game::drawToWindow(sf::RenderWindow& window, T& elemToDraw){
 
 void Game::drawWindowPartition(sf::RenderWindow& window){
     sf::RectangleShape rectangle;
-    
-    int yPosition = window_height * 0.75;
-    
-    rectangle.setPosition(0, yPosition);
+    rectangle.setPosition(0, partition_boundary);
     rectangle.setSize(sf::Vector2f(window_width, 5.f));
     rectangle.setFillColor(sf::Color::White);
     drawToWindow(window, rectangle);
@@ -36,6 +33,7 @@ void Game::drawWindowPartition(sf::RenderWindow& window){
 void Game::run(){
     sf::RenderWindow window (sf::VideoMode(window_width, window_height), "Synesthesia", sf::Style::Default);
     
+    partition_boundary = window_height * 0.75;
     drawWindowPartition(window);
     
     while(window.isOpen()){

@@ -14,7 +14,7 @@
 class Game{
     int window_height;
     int window_width;
-    sf::RenderWindow window;
+    int partition_boundary = NULL;
     
     template <typename T>
     void drawToWindow(sf::RenderWindow& window, T& elemToDraw);
