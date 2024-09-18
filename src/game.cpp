@@ -80,6 +80,7 @@ void Game::run(){
             window.clear();
             drawKeys();
             window.display();
+            keyboard.playKeys(pressedKeys);
             
             if (event.type == sf::Event::Closed)
                 window.close();

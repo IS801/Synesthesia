@@ -16,10 +16,10 @@ add_executable(synesthesia src/main.cpp src/game.cpp src/game.hpp src/keyboard.c
 #it uses the synesthesia.cmake file to do so and sets
 #some variables ($SFML_LIBRARIES and SFML_INCLUDE_DIRECTORIES) that are
 #used below
-find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
+find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
 #tells Cmake that the synesthesia executable needs to be linked with SFML
-target_link_libraries(synesthesia sfml-graphics)
+target_link_libraries(synesthesia sfml-graphics sfml-audio)
 
 #passes an option to clang when compiling to use recent c++ stuff
 target_compile_options(synesthesia PUBLIC -std=c++17)

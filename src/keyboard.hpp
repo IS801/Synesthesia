@@ -10,9 +10,10 @@
 
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <map>
 
-const auto KEYS = std::vector{
+const auto KEYS = std::vector<sf::Keyboard::Key>{
     sf::Keyboard::Z,
     sf::Keyboard::X,
     sf::Keyboard::C,
@@ -22,12 +23,25 @@ const auto KEYS = std::vector{
     sf::Keyboard::M,
 };
 
+const auto SOUNDS = std::map<sf::Keyboard::Key, std::string>{
+    {sf::Keyboard::Z, "N1.wav"},
+    {sf::Keyboard::X, "N2.wav"},
+    {sf::Keyboard::C, "N3.wav"},
+    {sf::Keyboard::V, "N4.wav"},
+    {sf::Keyboard::B, "N5.wav"},
+    {sf::Keyboard::N, "N6.wav"},
+    {sf::Keyboard::M, "N7.wav"}
+};
+
 struct Key{
     sf::RectangleShape shape;
-    int sound;
+    sf::SoundBuffer soundBuffer;
+    sf::Sound sound;
     
     void updateColor(sf::Color newColor);
+    void setSound();
     void playSound();
+    void loadSound();
 };
 
 class Keyboard{
@@ -38,6 +52,7 @@ public:
     void createKeys(sf::RenderWindow& window);
     std::map<sf::Keyboard::Key, Key> getKeys();
     void updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key>);
+    void playKeys(std::vector<sf::Keyboard::Key>);
 };
 
 #endif /* keyboard_hpp */
