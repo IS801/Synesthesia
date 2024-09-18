@@ -24,7 +24,7 @@ void ParticleSystem::runVisualizer(){
 
     RenderWindow window(VideoMode(1000, 1000), "Synesthesia", Style::Default, settings);
     
-    ParticleSystem particles(150);
+//    ParticleSystem particles(150);
 
     while (window.isOpen())
     {
@@ -36,13 +36,13 @@ void ParticleSystem::runVisualizer(){
         }
         window.clear(Color::Black);
 
-        particles.setEmitter(Vector2f(500, 500));
+        this->setEmitter(Vector2f(500, 500));
         
         Time elapsed = clock.restart();
         
-        particles.update(elapsed);
+        this->update(elapsed);
         
-        window.draw(particles);
+        window.draw(*this);
 
         window.display();
     }
