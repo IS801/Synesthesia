@@ -83,9 +83,9 @@ void ParticleSystem::resetParticle(std::size_t index)
 {
     // give a random velocity and lifetime to the particle
     float angle = (std::rand() % 360) * 3.14f / 180.f;
-    float speed = (std::rand() % 50) + 50.f;
+    float speed = (std::rand() % 10) + 50.f;
     m_particles[index].velocity = sf::Vector2f(std::cos(angle) * speed * velocityInt, std::sin(angle) * speed * velocityInt);
-    m_particles[index].lifetime = sf::milliseconds((std::rand() % lifetimeInt) + 2000);
+    m_particles[index].lifetime = sf::milliseconds((std::rand() % lifetimeInt) + 5000);
     
     // reset the position of the corresponding vertex
     m_vertices[index].position = m_emitter;

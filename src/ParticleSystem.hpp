@@ -19,7 +19,7 @@ class ParticleSystem : public sf::Drawable, public sf::Transformable
 {
 public:
 
-    ParticleSystem(unsigned int count = 150) :
+    ParticleSystem(unsigned int count = 250) :
         m_particles(count),
         m_vertices(sf::VertexArray(sf::TriangleFan, count)),
         m_lifetime(sf::seconds(30)),
@@ -64,9 +64,9 @@ private:
     sf::Time m_lifetime;
     sf::Vector2f m_emitter;
     std::vector<sf::Color> colors;
-    int lifetimeInt = 6500;
-    int velocityInt = 3;
-    int opacity = 450;
+    int lifetimeInt = 12000;
+    int velocityInt = 1;
+    int opacity = 500;
 };
 
 #endif /* ParticleSystem_hpp */
