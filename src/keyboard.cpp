@@ -38,6 +38,14 @@ std::map<sf::Keyboard::Key, Key> Keyboard::getKeys(){
     return keys;
 }
 
-// TODO: complete methods
-void updateColor(sf::Color newColor){};
-void playSound(){};
+void Keyboard::updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key> keysToUpdate){
+    for (auto updateKey : keysToUpdate)
+        keys[updateKey].updateColor(newColor);
+}
+
+void Key::updateColor(sf::Color newColor){
+    shape.setFillColor(newColor);
+};
+
+//TODO: Fill in once sound files are present
+void Key::playSound(){};

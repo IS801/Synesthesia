@@ -37,6 +37,7 @@ public:
     Keyboard(sf::RenderWindow& window);
     void createKeys(sf::RenderWindow& window);
     std::map<sf::Keyboard::Key, Key> getKeys();
+    void updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key>);
 };
 
 #endif /* keyboard_hpp */
