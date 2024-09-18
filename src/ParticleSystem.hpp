@@ -1,0 +1,63 @@
+//
+//  ParticleSystem.hpp
+//  synesthesia
+//
+//  Created by Isaac Shaw on 9/18/24.
+//
+
+#ifndef ParticleSystem_hpp
+#define ParticleSystem_hpp
+
+#include <stdio.h>
+#include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
+#include <ctime>
+#include <random>
+
+using namespace sf;
+
+class ParticleSystem : public sf::Drawable, public sf::Transformable
+{
+public:
+
+    ParticleSystem(unsigned int count) :
+        m_particles(count),
+        m_vertices(VertexArray(TriangleFan, count)),
+        m_lifetime(sf::seconds(30)),
+        m_emitter(500, 500),
+        particles(count)
+    {}
+
+    void setEmitter(sf::Vector2f position){ m_emitter = position;}
+
+    void update(sf::Time elapsed);
+ 
+
+private:
+
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
+    void drawWindow(sf::RenderWindow window);
+
+private:
+    
+    struct Particle
+    {
+        sf::Vector2f velocity;
+        sf::Time lifetime;
+    };
+
+    void resetParticle(std::size_t index);
+
+    std::vector<Particle> m_particles;
+    sf::VertexArray m_vertices;
+    sf::Time m_lifetime;
+    sf::Vector2f m_emitter;
+    int particles;
+    int lifetime;
+    int velocity;
+    int opacity;
+};
+
+#endif /* ParticleSystem_hpp */

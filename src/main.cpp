@@ -4,104 +4,9 @@
 #include <ctime>
 #include <random>
 
+#include "ParticleSystem.hpp"
+
 using namespace sf;
-
-//color1 = (0, 63, 92)
-//color2 = (44, 72, 117)
-//color3 = (138, 80, 143)
-//color4 = (188, 80, 144)
-//color5 = (255, 99, 97)
-//color6 = (255, 133, 49)
-//color7 = (255, 166, 0)
-
-
-class ParticleSystem : public sf::Drawable, public sf::Transformable
-{
-public:
-
-    ParticleSystem(unsigned int count) :
-        m_particles(count),
-        m_vertices(VertexArray(TriangleFan, count)),
-        m_lifetime(sf::seconds(30)),
-        m_emitter(500, 500)
-    {}
-
-    void setEmitter(sf::Vector2f position)
-    {
-        m_emitter = position;
-    }
-
-    void update(sf::Time elapsed)
-    {
-        std::vector<Color> colors = {Color(0, 63, 92), Color(44, 72, 117), Color(138, 80, 143), Color(188, 80, 144), Color(255, 99, 97), Color(255, 133, 49), Color(255, 166, 0)};
-        for (std::size_t i = 0; i < m_particles.size(); ++i)
-        {
-            int randomColorIndex = std::rand() % colors.size();
-            // update the particle lifetime
-            Particle& p = m_particles[i];
-            m_vertices[0].color = colors[0];
-            p.lifetime -= elapsed;
-            
-            // if the particle is dead, respawn it
-            if (p.lifetime <= sf::Time::Zero){
-                resetParticle(i);
-                m_vertices[i].color = colors[randomColorIndex];
-            }
-
-            // update the position of the corresponding vertex
-            m_vertices[0].position += p.velocity;
-            m_vertices[i + 1].position += p.velocity * elapsed.asSeconds();
-
-            // update the alpha (transparency) of the particle according to its lifetime
-//            float ratio = p.lifetime.asSeconds() / m_lifetime.asSeconds();
-            m_vertices[i].color.a = static_cast<sf::Uint8>(/*ratio +*/ 450 * 255);
-        }
-    }
-
-private:
-
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
-    {
-        // apply the transform
-        states.transform *= getTransform();
-
-        // our particles don't use a texture
-        states.texture = NULL;
-
-        // draw the vertex array
-        target.draw(m_vertices, states);
-    }
-
-private:
-
-    struct Particle
-    {
-        sf::Vector2f velocity;
-        sf::Time lifetime;
-    };
-
-    void resetParticle(std::size_t index)
-    {
-        // give a random velocity and lifetime to the particle
-        float angle = (std::rand() % 360) * 3.14f / 180.f;
-        float speed = (std::rand() % 50) + 50.f;
-        m_particles[index].velocity = sf::Vector2f(std::cos(angle) * speed * 2, std::sin(angle) * speed * 2);
-        m_particles[0].velocity = sf::Vector2f(std::cos(angle) * speed * 7, std::sin(angle) * speed * 7);
-        m_particles[index].lifetime = sf::milliseconds((std::rand() % 20000) + 1000);
-        m_particles[0].lifetime = sf::milliseconds((std::rand() % 99999999999999) + 1000);
-        
-
-        // reset the position of the corresponding vertex
-        m_vertices[index].position = m_emitter;
-    }
-
-    std::vector<Particle> m_particles;
-    sf::VertexArray m_vertices;
-    sf::Time m_lifetime;
-    sf::Vector2f m_emitter;
-};
-
-
 
 int main()
 {
@@ -112,7 +17,7 @@ int main()
 
     RenderWindow window(VideoMode(1000, 1000), "Synesthesia", Style::Default, settings);
     
-    ParticleSystem particles(75);
+    ParticleSystem particles(150);
     Clock clock;
 
     // run the program as long as the window is open
@@ -137,6 +42,7 @@ int main()
         particles.update(elapsed);
         
         window.draw(particles);
+        particlesystem.drawWindow()
 
         window.display();
     }
