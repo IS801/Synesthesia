@@ -22,9 +22,16 @@ public:
     ParticleSystem(unsigned int count) :
         m_particles(count),
         m_vertices(VertexArray(TriangleFan, count)),
-        m_lifetime(sf::seconds(45)),
+        m_lifetime(sf::seconds(30)),
         m_emitter(500, 500)
-    {}
+    {
+//        colors =
+//    }
+//    
+//    void setColors(std::vector<sf::Color, colors){
+//        this->colors = colors;
+    }
+    
 
     void setEmitter(sf::Vector2f position)
     {
@@ -44,6 +51,7 @@ public:
             // if the particle is dead, respawn it
             if (p.lifetime <= sf::Time::Zero){
                 resetParticle(i);
+//                m_vertices[0].color = colors[0];
                 m_vertices[i].color = colors[randomColorIndex];
             }
 
@@ -105,9 +113,9 @@ int main()
     ContextSettings settings;
     settings.antialiasingLevel = 8;
 
-    RenderWindow window(VideoMode(1000, 1000), "SFML shapes", Style::Default, settings);
+    RenderWindow window(VideoMode(1000, 1000), "Synesthesia", Style::Default, settings);
     
-    ParticleSystem particles(100);
+    ParticleSystem particles(150);
     Clock clock;
 
     // run the program as long as the window is open
@@ -125,53 +133,14 @@ int main()
 
         // clear the window with black color
         window.clear(Color::Black);
-//
-//        vArrayRotator vArray;
-//
-//        vArray.setPosition(500, 500);
-//        vArray.setRotation(45.f);
-        
-        
-        
-        std::vector <int> color1 {255, 211, 128};
-        
-        VertexArray vArray(TrianglesFan, 8);
-        
-        vArray[0].position = Vector2f(500, 500);
-        vArray[1].position = Vector2f(0, 0);
-        vArray[2].position = Vector2f(0, 1000);
-        vArray[3].position = Vector2f(500, 1000);
-        vArray[4].position = Vector2f(1000, 1000);
-        vArray[5].position = Vector2f(1000, 0);
-        vArray[6].position = Vector2f(500, 0);
-        vArray[7].position = Vector2f(0, 0);
-        
-        vArray[0].color = Color(color1[0], color1[1], color1[2]);
-        vArray[1].color = Color(255, 99, 97);
-        vArray[2].color = Color(138, 80, 143);
-        vArray[3].color = Color(138, 80, 143);
-        vArray[4].color = Color(44, 72, 117);
-        vArray[5].color = Color(0, 63, 92);
-        vArray[6].color = Color(255, 166, 0);
-        vArray[7].color = Color(255, 99, 97);
-        
 
-
-
-      
-//        window.draw(vArray);
-        
-        
-//        sf::Vector2i mouse = sf::Mouse::getPosition(window);
-//        particles.setEmitter(window.mapPixelToCoords(mouse));
-//        sf::Vector2i center = getPosition(window);
         particles.setEmitter(sf::Vector2f(500, 500));
         
         sf::Time elapsed = clock.restart();
         particles.update(elapsed);
         
         window.draw(particles);
-//
+
         window.display();
     }
 
