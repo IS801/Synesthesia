@@ -31,16 +31,55 @@ void Game::run(){
         sf::Event event;
         
         while(window.pollEvent(event)){
-            // TODO: Within this loop we must call window.clear then draw both the keys and the visualizer and then display
-            // If the keys are released the the visualizer needs to return to black
             
-            std::cout << sf::Keyboard::isKeyPressed(sf::Keyboard::Z) << std::endl;
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)){
-                std::cout << "Z" << std::endl;
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)){
-                std::cout << "X" << std::endl;
-            }
+            std::vector<sf::Keyboard::Key> pressedKeys = {};
+            std::vector<sf::Keyboard::Key> unpresssedKeys = {};
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+                pressedKeys.push_back(sf::Keyboard::Z);
+            else
+                unpresssedKeys.push_back(sf::Keyboard::Z);
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+                pressedKeys.push_back(sf::Keyboard::X);
+            else
+                unpresssedKeys.push_back(sf::Keyboard::X);
+            
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::C))
+                pressedKeys.push_back(sf::Keyboard::C);
+            else
+                unpresssedKeys.push_back(sf::Keyboard::C);
+            
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::V))
+                pressedKeys.push_back(sf::Keyboard::V);
+            else
+                unpresssedKeys.push_back(sf::Keyboard::V);
+            
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::B))
+                pressedKeys.push_back(sf::Keyboard::B);
+            else
+                unpresssedKeys.push_back(sf::Keyboard::B);
+            
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::N))
+                pressedKeys.push_back(sf::Keyboard::N);
+            else
+                unpresssedKeys.push_back(sf::Keyboard::N);
+            
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+                pressedKeys.push_back(sf::Keyboard::M);
+            else
+                unpresssedKeys.push_back(sf::Keyboard::M);
+            
+            keyboard.updateColors(sf::Color(120, 150, 200), pressedKeys);
+            keyboard.updateColors(sf::Color(245,242,220), unpresssedKeys);
+            window.clear();
+            drawKeys();
+            window.display();
             
             if (event.type == sf::Event::Closed)
                 window.close();

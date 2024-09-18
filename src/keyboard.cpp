@@ -16,12 +16,10 @@ void Keyboard::createKeys(sf::RenderWindow& window){
     int width = windowW * 0.05;
     int height = windowH * 0.18;
     int yPos = windowH * 0.8;
-    // TODO: Determine why we need to use 4.5 here. 3.5 allows half the length of 7 keys, but display is offset from center...
-    int startingX = (windowW / 2) - width * 4.5;
-    for (int i = 1; i < KEYS.size(); i++){
-        
+    int startingX = (windowW / 2) - width * 3.5;
+    for (int i = 0; i < KEYS.size(); i++){
         sf::RectangleShape shape;
-        shape.setPosition(startingX + (width * i), yPos);
+        shape.setPosition(startingX + (width * i + 1), yPos);
         shape.setSize(sf::Vector2f(width, height));
         shape.setFillColor(sf::Color(245,242,220));
         shape.setOutlineThickness(1);
