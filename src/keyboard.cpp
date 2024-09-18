@@ -67,6 +67,12 @@ void Keyboard::playKeys(std::vector<sf::Keyboard::Key> pressedKeys){
         
 }
 
+void Keyboard::killKeys(std::vector<sf::Keyboard::Key> unPressedKeys){
+    for (auto& key : unPressedKeys)
+        keys[key].killSound();
+        
+}
+
 void Key::updateColor(sf::Color newColor){
     shape.setFillColor(newColor);
 };
@@ -77,4 +83,8 @@ void Key::setSound(){
 
 void Key::playSound(){
     sound.play();
+};
+
+void Key::killSound(){
+    sound.stop();
 };

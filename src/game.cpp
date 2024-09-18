@@ -35,6 +35,10 @@ void Game::run(){
             std::vector<sf::Keyboard::Key> pressedKeys = {};
             std::vector<sf::Keyboard::Key> unpresssedKeys = {};
             
+            // keys to kill -> pressedKeys.intersection(unpressedKeys)
+            // Keys to contunue -> pressedKeys.intersection(previously pressed keys)
+            // new Keys to play -> pressedKeys - previously unpressed keys;
+            
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
                 pressedKeys.push_back(sf::Keyboard::Z);
             else
@@ -80,7 +84,7 @@ void Game::run(){
             window.clear();
             drawKeys();
             window.display();
-            keyboard.playKeys(pressedKeys);
+//            keyboard.playKeys(pressedKeys);
             
             if (event.type == sf::Event::Closed)
                 window.close();

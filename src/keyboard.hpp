@@ -41,6 +41,7 @@ struct Key{
     void updateColor(sf::Color newColor);
     void setSound();
     void playSound();
+    void killSound();
     void loadSound();
 };
 
@@ -53,6 +54,7 @@ public:
     std::map<sf::Keyboard::Key, Key> getKeys();
     void updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key>);
     void playKeys(std::vector<sf::Keyboard::Key>);
+    void killKeys(std::vector<sf::Keyboard::Key> unPressedKeys);
 };
 
 #endif /* keyboard_hpp */
