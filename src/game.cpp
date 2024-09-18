@@ -87,7 +87,6 @@ void Game::run(){
             keyboard.updateColors(sf::Color(245,242,220), unpresssedKeys);
             window.clear();
             
-            drawKeys();
             auto newColors = keyboard.getVisColors(pressedKeys);
             if (pressedKeys.empty())
                 visualizer.setColorVector({sf::Color(0,0,0)});
@@ -98,9 +97,11 @@ void Game::run(){
             sf::Time elapsed = clock.restart();
             visualizer.update(elapsed);
             window.draw(visualizer);
+            drawKeys();
             
             window.display();
-//            keyboard.playKeys(pressedKeys);
+            keyboard.killKeys(unpresssedKeys);
+            keyboard.playKeys(pressedKeys);
             
             if (event.type == sf::Event::Closed)
                 window.close();
