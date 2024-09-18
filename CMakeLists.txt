@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.15)
 project(Synesthesia)
 
 #the project contains an executable named testSFML that uses the following cpp files
-add_executable(synesthesia src/main.cpp src/game.cpp src/game.hpp src/keyboard.cpp src/keyboard.hpp)
+add_executable(synesthesia src/main.cpp src/game.cpp src/game.hpp src/keyboard.cpp src/keyboard.hpp src/ParticleSystem.cpp src/ParticleSystem.hpp)
 
 #create a folder named "cmake" at the top of your project and put the
 #synesthesia.cmake file in it.  This line tells Cmake to look there for

@@ -9,15 +9,17 @@
 #define game_hpp
 
 #include "keyboard.hpp"
+#include "ParticleSystem.hpp"
 
 class Game{
     int window_height;
     int window_width;
     sf::RenderWindow window;
     Keyboard keyboard;
+    ParticleSystem visualizer;
     
 public:
-    Game(int wHeight = 600, int wWidth = 800);
+    Game(int wHeight = 1000, int wWidth = 1000);
     void run();
     void drawKeys();
 };

@@ -40,6 +40,8 @@ void Keyboard::createKeys(sf::RenderWindow& window){
         
         
         keys[KEYS[i]] = Key{shape};
+        auto colorPair = COLORS.find(KEYS[i]);
+        keys[KEYS[i]].visColor = colorPair->second;
         if(!keys[KEYS[i]].soundBuffer.loadFromFile(wavFile)){
             std::cerr << "File " << KEYS[i] << " can't be loaded." << std::endl;
             exit(1);
@@ -54,6 +56,15 @@ Keyboard::Keyboard(sf::RenderWindow& window){
 
 std::map<sf::Keyboard::Key, Key> Keyboard::getKeys(){
     return keys;
+}
+
+std::vector<sf::Color> Keyboard::getVisColors(std::vector<sf::Keyboard::Key> pressedKeys){
+    std::vector<sf::Color> returnColors;
+    for (auto key : pressedKeys){
+        auto keyPair = keys.find(key);
+        returnColors.push_back(keyPair->second.visColor);
+    }
+    return returnColors;
 }
 
 void Keyboard::updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key> keysToUpdate){

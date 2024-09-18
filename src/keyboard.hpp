@@ -33,16 +33,29 @@ const auto SOUNDS = std::map<sf::Keyboard::Key, std::string>{
     {sf::Keyboard::M, "N7.wav"}
 };
 
+
+const auto COLORS = std::map<sf::Keyboard::Key, sf::Color>{
+    {sf::Keyboard::Z, sf::Color(0, 63, 92)},
+    {sf::Keyboard::X, sf::Color(44, 72, 117)},
+    {sf::Keyboard::C, sf::Color(138, 80, 143)},
+    {sf::Keyboard::V, sf::Color(188, 80, 144)},
+    {sf::Keyboard::B, sf::Color(255, 99, 97)},
+    {sf::Keyboard::N, sf::Color(255, 133, 49)},
+    {sf::Keyboard::M, sf::Color(255, 166, 0)}
+};
+
 struct Key{
     sf::RectangleShape shape;
     sf::SoundBuffer soundBuffer;
     sf::Sound sound;
+    sf::Color visColor;
     
     void updateColor(sf::Color newColor);
     void setSound();
     void playSound();
     void killSound();
     void loadSound();
+    
 };
 
 class Keyboard{
@@ -55,6 +68,7 @@ public:
     void updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key>);
     void playKeys(std::vector<sf::Keyboard::Key>);
     void killKeys(std::vector<sf::Keyboard::Key> unPressedKeys);
+    std::vector<sf::Color> getVisColors(std::vector<sf::Keyboard::Key> pressedKeys);
 };
 
 #endif /* keyboard_hpp */

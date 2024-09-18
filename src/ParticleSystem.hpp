@@ -15,25 +15,34 @@
 #include <ctime>
 #include <random>
 
-using namespace sf;
-
 class ParticleSystem : public sf::Drawable, public sf::Transformable
 {
 public:
 
-    ParticleSystem(unsigned int count) :
+    ParticleSystem(unsigned int count = 150) :
         m_particles(count),
-        m_vertices(VertexArray(TriangleFan, count)),
+        m_vertices(sf::VertexArray(sf::TriangleFan, count)),
         m_lifetime(sf::seconds(30)),
         m_emitter(500, 500),
-        particles(count)
+        colors({sf::Color(50,50,50)})
     {}
-
+    
+//    void runVisualizer(sf::RenderWindow& window);
+    
     void setEmitter(sf::Vector2f position){ m_emitter = position;}
 
     void update(sf::Time elapsed);
- 
-
+    
+    void setLifetimeInt(int time);
+    
+    void setVelocityInt(int speed);
+    
+    void setOpacity(int value);
+    
+    void setColorVector(std::vector<sf::Color> activeKeys);
+    
+    int getRandomColor(std::vector<sf::Color> colors);
+    
 private:
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
@@ -54,10 +63,10 @@ private:
     sf::VertexArray m_vertices;
     sf::Time m_lifetime;
     sf::Vector2f m_emitter;
-    int particles;
-    int lifetime;
-    int velocity;
-    int opacity;
+    std::vector<sf::Color> colors;
+    int lifetimeInt = 6500;
+    int velocityInt = 3;
+    int opacity = 450;
 };
 
 #endif /* ParticleSystem_hpp */

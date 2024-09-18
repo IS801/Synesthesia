@@ -14,7 +14,8 @@ Game::Game(int wWidth, int wHeight):
     window_height(wHeight),
     window_width(wWidth),
     window(sf::RenderWindow(sf::VideoMode(wWidth, wHeight), "Synesthesia", sf::Style::Default)),
-    keyboard(Keyboard(window))
+    keyboard(Keyboard(window)),
+    visualizer(ParticleSystem())
 {}
 
 void Game::drawKeys(){
@@ -23,6 +24,9 @@ void Game::drawKeys(){
 }
 
 void Game::run(){
+    sf::Clock clock;
+    std::srand(std::time(0));
+    
     window.clear();
     drawKeys();
     window.display();
@@ -82,7 +86,19 @@ void Game::run(){
             keyboard.updateColors(sf::Color(120, 150, 200), pressedKeys);
             keyboard.updateColors(sf::Color(245,242,220), unpresssedKeys);
             window.clear();
+            
             drawKeys();
+            auto newColors = keyboard.getVisColors(pressedKeys);
+            if (pressedKeys.empty())
+                visualizer.setColorVector({sf::Color(0,0,0)});
+            else
+                visualizer.setColorVector(newColors);
+            
+            visualizer.setEmitter(sf::Vector2f(500, 500));
+            sf::Time elapsed = clock.restart();
+            visualizer.update(elapsed);
+            window.draw(visualizer);
+            
             window.display();
 //            keyboard.playKeys(pressedKeys);
             
