@@ -67,21 +67,32 @@ std::vector<sf::Color> Keyboard::getVisColors(std::vector<sf::Keyboard::Key> pre
     return returnColors;
 }
 
-void Keyboard::updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key> keysToUpdate){
-    for (auto updateKey : keysToUpdate)
+sf::Color Keyboard::getVisColor(sf::Keyboard::Key pressedKey){
+    return keys[pressedKey].visColor;
+}
+
+void Keyboard::updateColor(sf::Color newColor, sf::Keyboard::Key updateKey){
         keys[updateKey].updateColor(newColor);
 }
 
-void Keyboard::playKeys(std::vector<sf::Keyboard::Key> pressedKeys){
-    for (auto& key : pressedKeys)
-        keys[key].playSound();
-        
+void Keyboard::playKey(sf::Keyboard::Key pressedKey){
+        keys[pressedKey].playSound();
 }
 
-void Keyboard::killKeys(std::vector<sf::Keyboard::Key> unPressedKeys){
-    for (auto& key : unPressedKeys)
-        keys[key].killSound();
-        
+void Keyboard::killSound(sf::Keyboard::Key unPressedKey){
+        keys[unPressedKey].killSound();
+}
+
+Key* Keyboard::getKey(sf::Keyboard::Key key){
+    return &(keys.at(key));
+}
+
+bool Keyboard::anyKeyPressed(){
+    for (const auto& [_, key] : keys){
+        if (key.isPressed)
+            return true;
+    }
+    return false;
 }
 
 void Key::updateColor(sf::Color newColor){

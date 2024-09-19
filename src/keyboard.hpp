@@ -49,6 +49,7 @@ struct Key{
     sf::SoundBuffer soundBuffer;
     sf::Sound sound;
     sf::Color visColor;
+    bool isPressed = false;
     
     void updateColor(sf::Color newColor);
     void setSound();
@@ -65,10 +66,14 @@ public:
     Keyboard(sf::RenderWindow& window);
     void createKeys(sf::RenderWindow& window);
     std::map<sf::Keyboard::Key, Key> getKeys();
-    void updateColors(sf::Color newColor, std::vector<sf::Keyboard::Key>);
-    void playKeys(std::vector<sf::Keyboard::Key>);
-    void killKeys(std::vector<sf::Keyboard::Key> unPressedKeys);
+    void updateColor(sf::Color newColor, sf::Keyboard::Key keysToUpdate);
+    void playKey(sf::Keyboard::Key pressedKey);
+    void killSound(sf::Keyboard::Key unPressedKey);
     std::vector<sf::Color> getVisColors(std::vector<sf::Keyboard::Key> pressedKeys);
+    sf::Color getVisColor(sf::Keyboard::Key pressedKey);
+    
+    bool anyKeyPressed();
+    Key* getKey(sf::Keyboard::Key key);
 };
 
 #endif /* keyboard_hpp */

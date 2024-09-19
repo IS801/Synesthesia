@@ -40,6 +40,18 @@ int ParticleSystem::getRandomColor(std::vector<sf::Color> colors){
     return randomColorIndex;
 }
 
+void ParticleSystem::addColor(sf::Color color){
+    colors.push_back(color);
+}
+
+void ParticleSystem::removeColor(sf::Color color){
+    auto it = std::find(colors.begin(), colors.end(), color);
+    if (it != colors.end())
+        colors.erase(colors.begin() + std::distance(colors.begin(), it));
+}
+
+std::vector<sf::Color> ParticleSystem::getColors(){return colors;};
+
 
 void ParticleSystem::update(sf::Time elapsed)
 {
@@ -85,7 +97,7 @@ void ParticleSystem::resetParticle(std::size_t index)
     float angle = (std::rand() % 360) * 3.14f / 180.f;
     float speed = (std::rand() % 10) + 50.f;
     m_particles[index].velocity = sf::Vector2f(std::cos(angle) * speed * velocityInt, std::sin(angle) * speed * velocityInt);
-    m_particles[index].lifetime = sf::milliseconds((std::rand() % lifetimeInt) + 5000);
+    m_particles[index].lifetime = sf::milliseconds((std::rand() % lifetimeInt) + 1000);
     
     // reset the position of the corresponding vertex
     m_vertices[index].position = m_emitter;

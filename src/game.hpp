@@ -17,11 +17,13 @@ class Game{
     sf::RenderWindow window;
     Keyboard keyboard;
     ParticleSystem visualizer;
+    sf::Clock clock;
     
 public:
     Game(int wHeight = 1000, int wWidth = 1000);
     void run();
     void drawKeys();
+    void setDisplay();
 };
 
 #endif /* game_hpp */
