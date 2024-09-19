@@ -20,7 +20,7 @@ Game::Game(int wWidth, int wHeight):
 {}
 
 void Game::drawKeys(){
-    for (auto shape : keyboard.getKeys())
+    for (auto shape : keyboard.getKeyColors())
         window.draw(*shape);
 }
 
@@ -37,12 +37,8 @@ void Game::run(){
     std::srand(int(std::time(0)));
     
     window.clear();
-    drawKeys();
     visualizer.setColorVector({sf::Color(0,0,0)});
-    visualizer.setEmitter(sf::Vector2f(500, 500));
-    sf::Time elapsed = clock.restart();
-    visualizer.update(elapsed);
-    window.draw(visualizer);
+    setDisplay();
     window.display();
     
     while(window.isOpen()){
@@ -76,7 +72,6 @@ void Game::run(){
                     window.close();
             }
         }
-        window.clear();
         if (keyboard.anyKeyPressed()){
             setDisplay();
         } else {
