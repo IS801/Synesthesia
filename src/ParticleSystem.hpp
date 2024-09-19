@@ -24,7 +24,7 @@ public:
         m_vertices(sf::VertexArray(sf::TriangleFan, count)),
         m_lifetime(sf::seconds(30)),
         m_emitter(500, 500),
-        colors({sf::Color(50,50,50)})
+        colors({sf::Color(0,0,0)})
     {}
     
 //    void runVisualizer(sf::RenderWindow& window);
