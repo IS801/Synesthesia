@@ -20,8 +20,8 @@ Game::Game(int wWidth, int wHeight):
 {}
 
 void Game::drawKeys(){
-    for (auto [_, keyObj]: keyboard.getKeys())
-        window.draw(keyObj.shape);
+    for (auto shape : keyboard.getKeys())
+        window.draw(*shape);
 }
 
 void Game::setDisplay(){
@@ -34,7 +34,7 @@ void Game::setDisplay(){
 }
 
 void Game::run(){
-    std::srand(std::time(0));
+    std::srand(int(std::time(0)));
     
     window.clear();
     drawKeys();

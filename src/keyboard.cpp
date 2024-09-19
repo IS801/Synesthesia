@@ -54,8 +54,12 @@ Keyboard::Keyboard(sf::RenderWindow& window){
     createKeys(window);
 }
 
-std::map<sf::Keyboard::Key, Key> Keyboard::getKeys(){
-    return keys;
+std::vector<sf::Shape*> Keyboard::getKeys(){
+    std::vector<sf::Shape*> shapes;
+    for (auto& [_, key] : keys){
+        shapes.push_back(&key.shape);
+    }
+    return shapes;
 }
 
 std::vector<sf::Color> Keyboard::getVisColors(std::vector<sf::Keyboard::Key> pressedKeys){
