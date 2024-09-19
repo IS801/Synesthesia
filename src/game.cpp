@@ -20,7 +20,7 @@ Game::Game(int wWidth, int wHeight):
 {}
 
 void Game::drawKeys(){
-    for (auto shape : keyboard.getKeys())
+    for (auto shape : keyboard.getKeyColors())
         window.draw(*shape);
 }
 
@@ -72,7 +72,6 @@ void Game::run(){
                     window.close();
             }
         }
-        window.clear();
         if (keyboard.anyKeyPressed()){
             setDisplay();
         } else {

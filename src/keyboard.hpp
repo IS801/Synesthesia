@@ -65,12 +65,7 @@ class Keyboard{
 public:
     Keyboard(sf::RenderWindow& window);
     void createKeys(sf::RenderWindow& window);
-    std::vector<sf::Shape*> getKeys();
-    void updateColor(sf::Color newColor, sf::Keyboard::Key keysToUpdate);
-    void playKey(sf::Keyboard::Key pressedKey);
-    void killSound(sf::Keyboard::Key unPressedKey);
-    std::vector<sf::Color> getVisColors(std::vector<sf::Keyboard::Key> pressedKeys);
-    sf::Color getVisColor(sf::Keyboard::Key pressedKey);
+    std::vector<sf::Shape*> getKeyColors();
     
     bool anyKeyPressed();
     Key* getKey(sf::Keyboard::Key key);
