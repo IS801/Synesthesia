@@ -37,12 +37,9 @@ void Game::run(){
     std::srand(int(std::time(0)));
     
     window.clear();
-    drawKeys();
+//    drawKeys();
     visualizer.setColorVector({sf::Color(0,0,0)});
-    visualizer.setEmitter(sf::Vector2f(500, 500));
-    sf::Time elapsed = clock.restart();
-    visualizer.update(elapsed);
-    window.draw(visualizer);
+    setDisplay();
     window.display();
     
     while(window.isOpen()){

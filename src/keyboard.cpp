@@ -20,8 +20,8 @@ void Keyboard::createKeys(sf::RenderWindow& window){
     // and positions based on window size
     auto [windowW, windowH] = window.getSize();
     int width = windowW * 0.05;
-    int height = windowH * 0.18;
-    int yPos = windowH * 0.8;
+    int height = windowH * 0.09;
+    int yPos = windowH * 0.9;
     int startingX = (windowW / 2) - width * 3.5;
     for (int i = 0; i < KEYS.size(); i++){
         sf::RectangleShape shape;
