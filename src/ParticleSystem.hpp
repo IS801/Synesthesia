@@ -19,16 +19,14 @@ class ParticleSystem : public sf::Drawable, public sf::Transformable
 {
 public:
 
-    ParticleSystem(unsigned int count = 150) :
+    ParticleSystem(unsigned int count = 250) :
         m_particles(count),
         m_vertices(sf::VertexArray(sf::TriangleFan, count)),
         m_lifetime(sf::seconds(30)),
-        m_emitter(500, 500),
-        colors({sf::Color(50,50,50)})
+        m_emitter(500, 500)
+//        colors({})
     {}
-    
-//    void runVisualizer(sf::RenderWindow& window);
-    
+        
     void setEmitter(sf::Vector2f position){ m_emitter = position;}
 
     void update(sf::Time elapsed);
@@ -41,7 +39,13 @@ public:
     
     void setColorVector(std::vector<sf::Color> activeKeys);
     
+    void addColor(sf::Color color);
+    
+    void removeColor(sf::Color color);
+    
     int getRandomColor(std::vector<sf::Color> colors);
+    
+    std::vector<sf::Color> getColors();
     
 private:
 
@@ -64,9 +68,9 @@ private:
     sf::Time m_lifetime;
     sf::Vector2f m_emitter;
     std::vector<sf::Color> colors;
-    int lifetimeInt = 6500;
-    int velocityInt = 3;
-    int opacity = 450;
+    int lifetimeInt = 5000;
+    int velocityInt = 2;
+    int opacity = 500;
 };
 
 #endif /* ParticleSystem_hpp */
