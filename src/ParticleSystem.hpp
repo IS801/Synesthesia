@@ -24,7 +24,6 @@ public:
         m_vertices(sf::VertexArray(sf::TriangleFan, count)),
         m_lifetime(sf::seconds(30)),
         m_emitter(500, 500)
-//        colors({})
     {}
         
     void setEmitter(sf::Vector2f position){ m_emitter = position;}
