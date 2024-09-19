@@ -56,7 +56,7 @@ void Game::run(){
                 
                 if (sf::Keyboard::isKeyPressed(key)){
                     if (!pianoKey->isPressed){
-                        pianoKey->shape.setFillColor(sf::Color(120, 150, 200));
+                        pianoKey->shape.setFillColor(pianoKey->visColor);
                         pianoKey->playSound();
                         visualizer.addColor(pianoKey->visColor);
                         pianoKey->isPressed = true;
