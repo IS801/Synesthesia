@@ -37,7 +37,6 @@ void Game::run(){
     std::srand(int(std::time(0)));
     
     window.clear();
-//    drawKeys();
     visualizer.setColorVector({sf::Color(0,0,0)});
     setDisplay();
     window.display();
@@ -53,7 +52,7 @@ void Game::run(){
                 
                 if (sf::Keyboard::isKeyPressed(key)){
                     if (!pianoKey->isPressed){
-                        pianoKey->shape.setFillColor(sf::Color(120, 150, 200));
+                        pianoKey->shape.setFillColor(pianoKey->visColor);
                         pianoKey->playSound();
                         visualizer.addColor(pianoKey->visColor);
                         pianoKey->isPressed = true;
